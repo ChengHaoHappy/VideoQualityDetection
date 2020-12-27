@@ -1,0 +1,60 @@
+﻿  Bootstrap.cpp
+E:\VS\VideoQualityDetection\ShakeDetection.h(53,1): warning C4305: “初始化”: 从“__int64”到“float”截断
+E:\VS\VideoQualityDetection\ShakeDetection.h(59,1): warning C4244: “+=”: 从“double”转换到“float”，可能丢失数据
+E:\VS\VideoQualityDetection\ShakeDetection.h(88,30): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=int
+          ]
+E:\VS\VideoQualityDetection\ShakeDetection.h(89,32): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=int
+          ]
+E:\VS\VideoQualityDetection\ShakeDetection.h(93,30): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=int
+          ]
+E:\VS\VideoQualityDetection\ShakeDetection.h(94,32): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=int
+          ]
+E:\VS\VideoQualityDetection\ColorCastDetection.h(65,61): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\VS\VideoQualityDetection\ColorCastDetection.h(66,67): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\VS\VideoQualityDetection\ColorCastDetection.h(79,10): warning C4101: “rMax”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(77,9): warning C4101: “ur”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(78,30): warning C4101: “rSqrSum”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(78,18): warning C4101: “rSum”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(79,22): warning C4101: “rSqrMax”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(79,16): warning C4101: “rMin”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(78,24): warning C4101: “bSum”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(77,21): warning C4101: “vb”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(78,39): warning C4101: “bSqrSum”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(80,31): warning C4101: “bSqrMin”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(77,17): warning C4101: “ub”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(80,22): warning C4101: “bSqrMax”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(80,10): warning C4101: “bMax”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(80,4): warning C4101: “gMin”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(79,31): warning C4101: “rSqrMin”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(78,12): warning C4101: “gSum”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(80,16): warning C4101: “bMin”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(79,40): warning C4101: “gMax”: 未引用的局部变量
+E:\VS\VideoQualityDetection\ColorCastDetection.h(77,13): warning C4101: “vr”: 未引用的局部变量
+E:\VS\VideoQualityDetection\BrightDetection.h(19,24): warning C4244: “=”: 从“_Tp”转换到“float”，可能丢失数据
+          with
+          [
+              _Tp=double
+          ]
+E:\VS\VideoQualityDetection\OcclusionDetection.h(31,34): warning C4244: “=”: 从“_Tp”转换到“float”，可能丢失数据
+          with
+          [
+              _Tp=double
+          ]
+E:\VS\VideoQualityDetection\OcclusionDetection.h(32,34): warning C4244: “=”: 从“_Tp”转换到“float”，可能丢失数据
+          with
+          [
+              _Tp=double
+          ]
+  VideoQualityDetection.vcxproj -> E:\VS\VideoQualityDetection\x64\Debug\VideoQualityDetection.exe

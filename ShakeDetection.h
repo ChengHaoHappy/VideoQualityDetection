@@ -6,6 +6,7 @@
 #include <vector>
 
 using namespace cv;
+using namespace std;
 
 class ShakeDetection {
 public:
@@ -19,15 +20,16 @@ public:
 		for (int i = 0; i < src.rows; i++)
 		{
 			uchar* ptr = src.ptr<uchar>(i);
-			int Rsum = 0;
+			// Rsum 为第k帧图像第i行的灰度值
+			int Rsum = 0;  
 			for (int j = 0; j < src.cols; j++)
 			{
-				Rsum += ptr[j];
+				Rsum += ptr[j];   
 			}
 			RS += Rsum;
-			rowsum.push_back(Rsum);
+			rowsum.push_back(Rsum); 
 		}
-		meanR = RS / src.rows;
+		meanR = RS / src.rows;  //行像素和均值
 	}
 	//列向投影求和
 	static void Col_sum(Mat src, std::vector<int>& rowsum, float& meanC)
@@ -83,11 +85,13 @@ public:
 		Row_sum(baseimg, Rsum_base, meanR_base);
 		Col_sum(baseimg, Csum_base, meanC_base);
 
-		for (int i = 0; i < Rsum_src.size(); i++)
+		//计算行方向的投影：说白了，行灰度投影就是将每行的像素替换为了该行所有像素和与像素均值的差值，列灰度投影同理。
+		for (int i = 0; i < Rsum_src.size(); i++)   
 		{
 			Rsum_src[i] = Rsum_src[i] - meanR_src;
 			Rsum_base[i] = Rsum_base[i] - meanR_base;
 		}
+		//
 		for (int i = 0; i < Csum_src.size(); i++)
 		{
 			Csum_src[i] = Csum_src[i] - meanC_src;
@@ -97,23 +101,29 @@ public:
 		int R_L = 0, C_L = 0; //行、列向的偏移像素
 		Cal_min(Rsum_src, Rsum_base, 20, R_L);  //m初值设置为20
 		Cal_min(Csum_src, Csum_base, 20, C_L);
-
-		printf("行偏移像素值 R_L= %d\n", R_L);
-		printf("列偏移像素值 C_L= %d\n", C_L);
+		
+		//printf("行偏移像素值 R_L= %d\n", R_L);
+		//printf("列偏移像素值 C_L= %d\n", C_L);
 
 		//设计阈值判断是否抖动
 		if (abs(R_L) > 10 || abs(C_L) > 10) {
 			printf("抖动异常\n");
+			//printf("抖动异常, 行偏移像素值 R_L= %d, 列偏移像素值 C_L= %d\n", R_L,C_L);
 		}
-		else {
-			printf("抖动正常\n");
-		}
+		/*else {
+			printf("抖动正常, 行偏移像素值 R_L= %d, 列偏移像素值 C_L= %d\n", R_L, C_L);
+		}*/
 
 	}
 
 	static void ShakeDetectionStart(String src, String base) {
 		cv::Mat srcImage = cv::imread(src);	//读取
 		cv::Mat baseimg = cv::imread(base);
+		if (!srcImage.data || !baseimg.data)
+		{
+			cout << "no picture!\n";
+			exit(1);
+		}
 		float k = 0;
 		ViewShake(srcImage, k, baseimg);
 	}

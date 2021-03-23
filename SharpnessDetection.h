@@ -42,13 +42,19 @@ public:
 
 	static void SharpnessDetectionStart(std::string src) {
 		cv::Mat imageData = cv::imread(src.c_str());
+		if (!imageData.data)
+		{
+			cout << "no picture!\n";
+			exit(1);
+		}
 		double DR = DefRto(imageData);
 		if (DR < 10) {
-			std::cout << "清晰度异常，DR= " << DR << std::endl;
+			std::cout << "清晰度异常" << std::endl;
+			//std::cout << "清晰度异常，DR= " << DR << std::endl;
 		}
-		else {
+		/*else {
 			std::cout << "清晰度正常, DR= " <<DR << std::endl;
-		}
+		}*/
 	}
 
 };

@@ -1,2 +1,1 @@
 E:\VS\VideoQualityDetection\x64\Debug\VideoQualityDetection.exe
-E:\VS\VideoQualityDetection\x64\Debug\VideoQualityDetection.pdb

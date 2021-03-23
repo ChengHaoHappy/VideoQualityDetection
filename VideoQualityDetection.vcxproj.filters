@@ -33,9 +33,24 @@
     <ClInclude Include="SharpnessDetection.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="StripeDetection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LOSDetection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ContrastDetection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NoiseDetection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bootstrap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="noiseTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

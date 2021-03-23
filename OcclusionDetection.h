@@ -2,6 +2,7 @@
 #include <opencv2/opencv.hpp>  //OpenCV头文件
 
 using namespace cv;
+using namespace std;
 
 class Occlusion {
 public:
@@ -30,25 +31,31 @@ public:
 
 				sigma_g = stddev_g.at<double>(0);
 				sigma_l = stddev_l.at<double>(0);
-
-				if (sigma_g < 25 && sigma_l < 10)
+				//cout << "sigma_g=" << sigma_g << ", sigma_l = " << sigma_l << endl;
+				if (sigma_g < 15 && sigma_l < 10)
 					CoverBlock++;
 			}
 		}
-		IsCovered = CoverBlock > 0 ? true : false;
+		//printf("CoverBlock=%d\n", CoverBlock);
+		IsCovered = CoverBlock > 1 ? true : false;
 
 		return IsCovered;
 	}
 
 	static void OcclusionDetectionStart(std::string src) {
 		cv::Mat imageData = cv::imread(src.c_str());
+		if (!imageData.data)
+		{
+			cout << "no picture!\n";
+			exit(1);
+		}
 		bool IsCovered = Cover2(imageData);
 		if (IsCovered) {
 			std::cout << "视频被遮挡 " << std::endl;
 		}
-		else {
+		/*else {
 			std::cout << "视频未被遮挡 " << std::endl;
-		}
+		}*/
 	}
 
 };

@@ -142,13 +142,18 @@
   <ItemGroup>
     <ClInclude Include="BrightDetection.h" />
     <ClInclude Include="ColorCastDetection.h" />
+    <ClInclude Include="ContrastDetection.h" />
     <ClInclude Include="FreezeDetection.h" />
+    <ClInclude Include="LOSDetection.h" />
+    <ClInclude Include="NoiseDetection.h" />
     <ClInclude Include="OcclusionDetection.h" />
     <ClInclude Include="ShakeDetection.h" />
     <ClInclude Include="SharpnessDetection.h" />
+    <ClInclude Include="StripeDetection.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bootstrap.cpp" />
+    <ClCompile Include="noiseTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

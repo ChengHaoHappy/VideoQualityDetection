@@ -2,11 +2,13 @@
 * 视频偏色异常检测
 */
 #include <iostream>
+#include <opencv2/opencv.hpp>  //OpenCV头文件
+#include <opencv2/highgui/highgui_c.h>
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 
 using namespace std;
-
+using namespace cv;
 
 class ColorCastDetection {
 public:
@@ -100,15 +102,15 @@ public:
 		cvReleaseImage(&fBlue);
 
 	}
-	static void RepairCast(const char* src)
+	/*static void RepairCast(const char* src)
 	{
 		IplImage* image = cvLoadImage(src, 1);
 		IplImage* dst = cvCloneImage(image);
 		double K = CastDetection(image);
-		printf("偏色检测K值：%lf\n", K);
+		//printf("偏色检测K值：%lf\n", K);
 		if (K > 1.4)
 		{
-			printf("偏色异常, K=%lf\n", K);
+			printf("偏色异常, 偏色检测值K=%lf\n", K);
 			AdjustCast(image, dst);
 		}
 		cvNamedWindow("src", 1);
@@ -117,18 +119,29 @@ public:
 		cvShowImage("dst", dst);
 		cvWaitKey(0);
 		cvReleaseImage(&dst);
-	}
+	}*/
 
 	static void ColorCastDetectionStart(const char* src) {
 		IplImage* image = cvLoadImage(src, 1);
+		//cv::Mat image = cv::imread(src.c_str());
+
+		if (image == 0)
+		{
+			cerr << "Image reading error" << endl;
+			system("pause");
+			return ;
+		}
+		
+	
 		double K = CastDetection(image);
 		if (K > 1.4)
 		{
-			printf("偏色异常, K=%lf\n", K);
+			cout << "偏色异常" << endl;
+			//printf("偏色异常, K=%lf\n", K);
 		}
-		else {
+		/*else {
 			printf("偏色正常, K=%lf\n", K);
-		}
+		}*/
 
 	}
 

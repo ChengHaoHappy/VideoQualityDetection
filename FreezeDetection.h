@@ -3,9 +3,11 @@
 */
 #include <iostream>
 #include <opencv2/opencv.hpp>  //OpenCV头文件
+#include <opencv2\imgproc\types_c.h>
 #include <vector>
 
 using namespace cv;
+using namespace std;
 
 
 class FreezeDetection {
@@ -37,17 +39,24 @@ public:
 			}
 		}
 		k = (float)NUM / (src_gray.rows * src_gray.cols);
-		printf("NUM = %d，像素差异比 k=%f\n", NUM,k);
+		//printf("NUM = %d，像素差异比 k=%f\n", NUM,k);
 		if (k < 0.15) {
-			printf("视频冻结异常\n");
+			cout << "视频冻结异常" << endl;
+			//printf("视频冻结异常，NUM = %d，像素差异比 k=%f\n", NUM, k);
 		}
-		else {
-			printf("视频未冻结\n");
-		}
+		/*else {
+			printf("视频未冻结，NUM = %d，像素差异比 k=%f\n", NUM, k);
+		}*/
 	}
 	static void FreezeDetectionStart(String src, String base) {
 		cv::Mat srcImage = cv::imread(src);	//读取
 		cv::Mat baseimg = cv::imread(base);
+		if (srcImage.data  == 0 || baseimg.data == 0)
+		{
+			cerr << "Image reading error" << endl;
+			system("pause");
+			return;
+		}
 		float k = 0;
 		ViewFreeze2(srcImage, baseimg, k);
 	}

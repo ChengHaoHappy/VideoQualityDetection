@@ -6,6 +6,7 @@
 #include <vector>
 
 using namespace cv;
+using namespace std;
 
 class BrightDetection {
 public:
@@ -49,7 +50,7 @@ public:
 	}
 
 	/*********************************************************************************************************************************************************
-*函数描述： brightnessException     计算并返回一幅图像的色偏度以及，色偏方向
+*函数描述： brightnessException     
 *函数参数： InputImg    需要计算的图片，BGR存放格式，彩色（3通道），灰度图无效
 *           cast        计算出的偏差值，小于1表示比较正常，大于1表示存在亮度异常；当cast异常时，da大于0表示过亮，da小于0表示过暗
 *函数返回值：   返回值通过cast、da两个引用返回，无显式返回值
@@ -66,12 +67,12 @@ public:
 		{
 			for (int j = 0; j < GRAYimg.cols; j++)
 			{
-				a += float(GRAYimg.at<uchar>(i, j) - 128);//在计算过程中，考虑128为亮度均值点
+				a += float(GRAYimg.at<uchar>(i, j) - 128);//在计算过程中，考虑128为亮度均值点，统计偏离的总数
 				int x = GRAYimg.at<uchar>(i, j);
-				Hist[x]++;
+				Hist[x]++; //统计每个亮度的次数
 			}
 		}
-		da = a / float(GRAYimg.rows * InputImg.cols);
+		da = a / float(GRAYimg.rows * InputImg.cols);  //
 		float D = abs(da);
 		float Ma = 0;
 		for (int i = 0; i < 256; i++)
@@ -84,17 +85,26 @@ public:
 		cast = K;
 		return;
 	}
-	static void BrightDetectionStart(std::string src) {
+	static bool BrightDetectionStart(std::string src) {
 		float brightcast, brightda;
 		cv::Mat imageData = cv::imread(src.c_str());
+		if (imageData.data == 0)
+		{
+			cerr << "Image reading error" << endl;
+			system("pause");
+			return false;
+		}
 		brightnessException(imageData, brightcast, brightda);
 		//std::cout << "brightcast: " << brightcast << std::endl;
 		if (brightcast > 1) {
-			std::string brightDes = (brightda > 0) ? "偏亮" : "偏暗";
-			std::cout << "亮度异常, brightda=" << brightda << " " << brightDes << std::endl;
+			string brightDes = (brightda > 0) ? "偏亮" : "偏暗";
+			cout << "亮度异常:" << brightDes  << endl;
+			return false;
+			//std::cout << "亮度异常, brightda=" << brightda << " " << brightDes << std::endl;
 		}
-		else {
+		/*else {
 			std::cout << "亮度正常，brightcast="<< brightcast << std::endl;
-		}
+		}*/
+		return true;
 	}
 };

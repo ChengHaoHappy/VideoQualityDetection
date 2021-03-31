@@ -45,12 +45,48 @@
     <ClInclude Include="NoiseDetection.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bootstrap.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="noiseTest.cpp">
+    <ClCompile Include="BrightDetect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorCastDetect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Detection.h">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ContrastDetect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FreezeDetect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LOSDetect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NoiseDetect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OcclusionDetect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ShakeDetect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SharpnessDetect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StripeDetect.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

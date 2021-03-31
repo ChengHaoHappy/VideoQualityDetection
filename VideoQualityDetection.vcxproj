@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
     <ClInclude Include="BrightDetection.h" />
     <ClInclude Include="ColorCastDetection.h" />
     <ClInclude Include="ContrastDetection.h" />
@@ -153,7 +154,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bootstrap.cpp" />
-    <ClCompile Include="noiseTest.cpp" />
+    <ClCompile Include="ColorCastDetect.cpp" />
+    <ClCompile Include="ContrastDetect.cpp" />
+    <ClCompile Include="Detection.h" />
+    <ClCompile Include="BrightDetect.cpp" />
+    <ClCompile Include="Action.cpp" />
+    <ClCompile Include="FreezeDetect.cpp" />
+    <ClCompile Include="LOSDetect.cpp" />
+    <ClCompile Include="NoiseDetect.cpp" />
+    <ClCompile Include="OcclusionDetect.cpp" />
+    <ClCompile Include="ShakeDetect.cpp" />
+    <ClCompile Include="SharpnessDetect.cpp" />
+    <ClCompile Include="StripeDetect.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

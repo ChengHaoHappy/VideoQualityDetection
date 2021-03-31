@@ -1,16 +1,15 @@
-/*
-* 对比度异常
-*/
 #include <iostream>
 #include <opencv2/opencv.hpp>  //OpenCV头文件
 #include <vector>
+#include "Detection.h"
 
 using namespace cv;
 using namespace std;
 
-class ContrastDetection {
+
+class ContrastDetect : public Detection {
 public:
-	static void ContrastException(Mat InputImg, float& cast, float& da)
+	void ContrastException(Mat InputImg, float& cast, float& da)
 	{
 		Mat GRAYimg;
 		cvtColor(InputImg, GRAYimg, CV_BGR2GRAY);
@@ -40,24 +39,21 @@ public:
 		cast = K;
 		return;
 	}
-	static void ContrastDetectionStart(std::string src) {
+	int Detect(string src) {
 		float brightcast, brightda;
 		cv::Mat imageData = cv::imread(src.c_str());
 		if (imageData.data == 0)
 		{
 			cerr << "Image reading error" << endl;
 			system("pause");
-			return;
+			return 3;
 		}
 		ContrastException(imageData, brightcast, brightda);
-		//std::cout << "brightcast: " << brightcast << std::endl;
 		if (brightcast > 1) {
 			std::string brightDes = (brightda > 0) ? "偏亮" : "偏暗";
 			std::cout << "对比度异常：" << brightDes << std::endl;
+			return 3;
 		}
-		/*else {
-			std::cout << "对比度正常 " << std::endl;
-		}*/
+		return 0;
 	}
 };
-

@@ -1,12 +1,13 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>  //OpenCVÍ·ÎÄ¼þ
+#include "Detection.h"
 
 using namespace cv;
 using namespace std;
 
-class Occlusion  {
+class OcclusionDetect : public Detection {
 public:
-	static bool Cover2(Mat src)
+	bool Cover2(Mat src)
 	{
 		bool IsCovered = false;
 		Mat gray;
@@ -42,7 +43,7 @@ public:
 		return IsCovered;
 	}
 
-	static int  OcclusionDetectionStart(std::string src) {
+	int Detect(std::string src) {
 		cv::Mat imageData = cv::imread(src.c_str());
 		if (!imageData.data)
 		{

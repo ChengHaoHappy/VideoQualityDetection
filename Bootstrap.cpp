@@ -26,10 +26,10 @@ void DetectionSchedule(const char* src, const char* base) {
 	LOSDetection::LOSDetectionStart(src);
 	NoiseDetection().NoiseDetectionStart(src);
 	int td;
-	int sum = 0;//同一种异常异常连续出现的次数
+	int sum = 0;//同一种异常连续出现的次数
 	int sum1 = 0;
 	int tag = 0;  //每一种方法的标志位
-	bool failure;
+	bool failure = false;
 	for (int i = 0; i < 10; i++) {
 		//循环检测
 		if (failure && tag == i) {
@@ -53,11 +53,11 @@ void DetectionSchedule(const char* src, const char* base) {
 				td = td * 2;
 			}
 		}
-		//
 	}
+
 }
 
-int main() {
+int Tmain2() {
 
 	//const char* src = "E:/VQA/DatabaseBright/5.bmp";   //正常
 	//const char* base = "E:/VQA/DatabaseBright/5.bmp";   //正常

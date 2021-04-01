@@ -166,6 +166,7 @@
     <ClCompile Include="ShakeDetect.cpp" />
     <ClCompile Include="SharpnessDetect.cpp" />
     <ClCompile Include="StripeDetect.cpp" />
+    <ClCompile Include="VQA.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

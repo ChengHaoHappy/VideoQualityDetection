@@ -89,5 +89,8 @@
     <ClCompile Include="StripeDetect.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="VQA.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

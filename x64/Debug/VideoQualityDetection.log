@@ -1,4 +1,4 @@
-﻿  Action.cpp
+﻿  VQA.cpp
 E:\VS\VideoQualityDetection\LOSDetect.cpp(3,10): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
 E:\VS\VideoQualityDetection\NoiseDetect.cpp(104,7): warning C4101: “p”: 未引用的局部变量
 E:\VS\VideoQualityDetection\NoiseDetect.cpp(104,10): warning C4101: “q”: 未引用的局部变量

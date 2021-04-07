@@ -86,9 +86,9 @@ public:
 		return  0;
 	}
 
-	int Detect(std::string src) {
+	int Detect(Mat srcImage) {
 
-		cv::Mat srcImage = cv::imread(src.c_str());
+		//cv::Mat srcImage = cv::imread(src.c_str());
 		if (!srcImage.data)
 		{
 			cout << "no picture!\n";

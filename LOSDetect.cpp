@@ -34,9 +34,9 @@ public:
 		return 0;
 	}
 
-	int Detect(std::string imagesrc)
+	int Detect(Mat src)
 	{
-		Mat src = imread(imagesrc.c_str(), 0);
+		//Mat src = imread(imagesrc.c_str(), 0);
 		if (!src.data)
 		{
 			cout << "no picture!\n";

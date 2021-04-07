@@ -1,15 +1,16 @@
 #include<iostream>
 #include <list>
 #include "Action.h"
-
+#include <opencv2/opencv.hpp>  //OpenCVÍ·ÎÄ¼þ
 
 using namespace std;
+using namespace cv;
 
 class VQA {
 public:
     int sum = 0;
     int sum1 = 0;
-    int frame = 2;
+    int frame = 10;
     int flag = 0;
     list<Detection*> queue;
 public:
@@ -18,17 +19,17 @@ public:
         queue.push_back(new BrightDetect());
         queue.push_back(new ColorCastDetect());
         queue.push_back(new ContrastDetect());
-        queue.push_back(new FreezeDetect());
+        //queue.push_back(new FreezeDetect());
         queue.push_back(new LOSDetect());
         queue.push_back(new NoiseDetect());
         queue.push_back(new OcclusionDetect());
-        queue.push_back(new ShakeDetect());
+        //queue.push_back(new ShakeDetect());
         queue.push_back(new SharpnessDetect());
         queue.push_back(new StripeDetect());
     }
 
 
-    bool detectStart(string src) {
+    bool detectStart(Mat src) {
         list<Detection*>::iterator piter = queue.begin();
         for (; piter != queue.end(); ++piter) {
             int x = (*piter)->Detect(src);
@@ -53,13 +54,13 @@ public:
                 }
                 return false;
             }
-
         }
         flag = 0;
         sum = 0;
         sum1++;
         if (sum1 >= 3) {
             frame *= 2;
+            sum1 = 0;
         }
         return true;
     }

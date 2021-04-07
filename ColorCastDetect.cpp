@@ -43,13 +43,13 @@ public:
 		return K;
 	}
 
-	int Detect(string path) {
-		const char* src = path.data();
-		IplImage* image = cvLoadImage(src, 1);
+	int Detect(Mat mat) {
+		//const char* src = path.data();
+		//IplImage* image = cvLoadImage(src, 1);
+		IplImage* image = &IplImage(mat);	1
 		if (image == 0)
 		{
-			cerr << "Image reading error" << endl;
-			system("pause");
+			cout << "Image reading error" << endl;
 			return 2;
 		}
 		double K = CastDetection(image);

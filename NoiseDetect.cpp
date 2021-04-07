@@ -182,9 +182,9 @@ public:
 		}
 		return T;
 	}
-	int Detect(std::string src) {
+	int Detect(Mat img) {
 
-		cv::Mat img = cv::imread(src.c_str());
+		//cv::Mat img = cv::imread(src.c_str());
 		if (!img.data)
 		{
 			cout << "no picture!\n";

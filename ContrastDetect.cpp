@@ -39,9 +39,9 @@ public:
 		cast = K;
 		return;
 	}
-	int Detect(string src) {
+	int Detect(Mat imageData) {
 		float brightcast, brightda;
-		cv::Mat imageData = cv::imread(src.c_str());
+		//cv::Mat imageData = cv::imread(src.c_str());
 		if (imageData.data == 0)
 		{
 			cerr << "Image reading error" << endl;

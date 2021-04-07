@@ -41,9 +41,9 @@ public:
 			cout << "ÊÓÆµ¶³½áÒì³£" << endl;
 		}
 	}
-	int Detect(string src, string base) {
-		cv::Mat srcImage = cv::imread(src);
-		cv::Mat baseimg = cv::imread(base);
+	int Detect(Mat srcImage, Mat baseimg) {
+		//cv::Mat srcImage = cv::imread(src);
+		//cv::Mat baseimg = cv::imread(base);
 		if (srcImage.data == 0 || baseimg.data == 0)
 		{
 			cerr << "Image reading error" << endl;

@@ -43,8 +43,8 @@ public:
 		return IsCovered;
 	}
 
-	int Detect(std::string src) {
-		cv::Mat imageData = cv::imread(src.c_str());
+	int Detect(Mat imageData) {
+		//cv::Mat imageData = cv::imread(src.c_str());
 		if (!imageData.data)
 		{
 			cout << "no picture!\n";

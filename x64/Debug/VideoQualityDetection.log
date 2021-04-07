@@ -1,7 +1,12 @@
-﻿  VQA.cpp
+﻿  ColorCastDetect.cpp
+E:\VS\VideoQualityDetection\ColorCastDetect.cpp(49,1): error C2440: “<function-style-cast>”: 无法从“cv::Mat”转换为“IplImage”
+E:\VS\VideoQualityDetection\ColorCastDetect.cpp(49,1): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+E:\VS\VideoQualityDetection\ColorCastDetect.cpp(50,3): error C2143: 语法错误: 缺少“;”(在“if”的前面)
+  VQA.cpp
+E:\VS\VideoQualityDetection\ColorCastDetect.cpp(49,1): error C2440: “<function-style-cast>”: 无法从“cv::Mat”转换为“IplImage”
+E:\VS\VideoQualityDetection\ColorCastDetect.cpp(49,1): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+E:\VS\VideoQualityDetection\ColorCastDetect.cpp(50,3): error C2143: 语法错误: 缺少“;”(在“if”的前面)
 E:\VS\VideoQualityDetection\LOSDetect.cpp(3,10): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
-E:\VS\VideoQualityDetection\NoiseDetect.cpp(104,7): warning C4101: “p”: 未引用的局部变量
-E:\VS\VideoQualityDetection\NoiseDetect.cpp(104,10): warning C4101: “q”: 未引用的局部变量
 E:\VS\VideoQualityDetection\OcclusionDetect.cpp(33,34): warning C4244: “=”: 从“_Tp”转换到“float”，可能丢失数据
           with
           [
@@ -34,4 +39,4 @@ E:\VS\VideoQualityDetection\ShakeDetect.cpp(99,32): warning C4244: “=”: 从�
           [
               _Ty=int
           ]
-  VideoQualityDetection.vcxproj -> E:\VS\VideoQualityDetection\x64\Debug\VideoQualityDetection.exe
+  正在生成代码...

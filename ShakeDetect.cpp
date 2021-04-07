@@ -114,9 +114,9 @@ public:
 
 	}
 
-	int  Detect(String src, String base) {
-		cv::Mat srcImage = cv::imread(src);	//¶ÁÈ¡
-		cv::Mat baseimg = cv::imread(base);
+	int  Detect(Mat srcImage, Mat baseimg) {
+		//cv::Mat srcImage = cv::imread(src);	//¶ÁÈ¡
+		//cv::Mat baseimg = cv::imread(base);
 		if (!srcImage.data || !baseimg.data)
 		{
 			cout << "no picture!\n";

@@ -61,7 +61,7 @@ public:
 		double max_v, min_v;
 		minMaxLoc(mAmplitude, &min_v, &max_v);
 		//¼ÆËããÐÖµ
-		double T = max(men + 3 * std, max_v / 2);
+		double T = (std::max)(men + 3 * std, max_v / 2);
 		double count = 0;
 		int height = mAmplitude.rows;
 		int width = mAmplitude.cols;

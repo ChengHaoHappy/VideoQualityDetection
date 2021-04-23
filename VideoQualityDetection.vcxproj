@@ -114,13 +114,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>G:\Program Files\MySQL\MySQL Server 5.7\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>opencv_world3412d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>G:\Program Files\MySQL\MySQL Server 5.7\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Action.h" />
     <ClInclude Include="BrightDetection.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="ColorCastDetection.h" />
     <ClInclude Include="ContrastDetection.h" />
     <ClInclude Include="FreezeDetection.h" />
@@ -154,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bootstrap.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ColorCastDetect.cpp" />
     <ClCompile Include="ContrastDetect.cpp" />
     <ClCompile Include="Detection.h" />

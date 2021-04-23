@@ -46,13 +46,13 @@ public:
 	int Detect(Mat mat) {
 		//const char* src = path.data();
 		//IplImage* image = cvLoadImage(src, 1);
-		IplImage* image = &IplImage(mat);	1
-		if (image == 0)
+		IplImage image = cvIplImage(mat);	
+		if (&image == 0)
 		{
 			cout << "Image reading error" << endl;
 			return 2;
 		}
-		double K = CastDetection(image);
+		double K = CastDetection(&image);
 		if (K > 1.4)
 		{
 			cout << "ƫɫ�쳣" << endl;

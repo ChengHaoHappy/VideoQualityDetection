@@ -26,6 +26,11 @@ list<Camera> cameraList;
 bool videoCaptureFun(Camera camera) {
     cv::VideoCapture capture;
     capture.open(camera.getIp());
+	//long totalFrameNumber = capture.get(CV_CAP_PROP_FRAME_COUNT);//获取视频的总帧数
+	//cout << "整个视频共" << totalFrameNumber << "帧" << endl;
+	//获取帧率  
+	//double rate = capture.get(CV_CAP_PROP_FPS);
+	//cout << "帧率为:" << rate << endl;
     if (!capture.isOpened()) {
         printf("could not read this video file...\n");
         return false;
@@ -33,10 +38,15 @@ bool videoCaptureFun(Camera camera) {
     cv::Mat frame;
     VQA vqa;
     int count = 0;
+	time_t result1 = time(NULL);
+	char startTime[26];
+	//开始时间
+	ctime_s(startTime, sizeof startTime, &result1);
+	printf("startTime:%s\n", startTime);
     while (capture.read(frame)) {
         //imshow("camera-demo", frame);
         count++;
-		//printf("ID:%d,第%d帧\n", camera.getId(), count);
+		printf("ID:%d,第%d帧\n", camera.getId(), count);
         if (count == vqa.frame) {
 			printf("ID:%d,检测间隔:%d\n", camera.getId(), vqa.frame);
 			cout<<"摄像头编号:"<< camera.getName()<<endl;
@@ -46,17 +56,18 @@ bool videoCaptureFun(Camera camera) {
 			char str[26];
 			ctime_s(str, sizeof str, &result);
 			printf("时间:%s\n", str);
-            //cout << "连续正常的帧数:" << vqa.sum1 << endl;
-            //cout << "连续异常的帧数:" << vqa.sum << endl;
+            cout << "连续正常的帧数:" << vqa.sum1 << endl;
+            cout << "连续异常的帧数:" << vqa.sum << endl;
             count = 0;
         }
-        char c = waitKey(50);
-        if (c == 27) {
-            break;
-        }
+		//等30ms显示下一帧
+		//waitKey(10);
     }
+	time_t result2 = time(NULL);
+	char endTime[26];
+	ctime_s(endTime, sizeof endTime, &result2);
+	printf("endTime:%s\n", endTime);
     capture.release();
-    waitKey(0);
     return true;
 }
 
@@ -73,7 +84,7 @@ void connectDatabaseFun() {
 	{
 		cout << "connect succeed!" << endl;
 		mysql_query(&myCont, "SET NAMES GBK"); //设置编码格式,否则在cmd下无法显示中文
-		res = mysql_query(&myCont, "select * from camera");//查询    //database下有相应的表才能成功
+		res = mysql_query(&myCont, "select * from camera where is_delete = 0");//查询    //database下有相应的表才能成功
 		if (!res)
 		{
 			result = mysql_store_result(&myCont);//保存查询到的数据到result
@@ -118,8 +129,8 @@ int main() {
 	}
     //thread t1(videoCaptureFun,"E:/VQA/DatabaseViewShake/0073YC.avi");
     //t1.join();
-    // thread t2(videoCaptureFun, "E:/VQA/DatabaseViewShake/00006_1.avi");
-    //t2.join();
+   // thread t2(videoCaptureFun, "E:/VQA/DatabaseViewShake/00006_1.avi");
+   // t2.join();
 	
     return 0;
 }
@@ -128,3 +139,118 @@ int main() {
 
 
 
+//对比实验
+
+//顺序检测同一种异常
+int main1() {
+	const char filename[] = "E:/VQA/DatabaseBright/2.png";
+	Mat frame = imread(filename);
+	VQA vqa;
+	time_t result1 = time(NULL);
+	char startTime[26];
+	ctime_s(startTime, sizeof startTime, &result1);
+	printf("startTime:%s\n", startTime);
+	for (int i = 0; i < 1000; i++) {
+		//顺序检测同一种异常
+		//vqa.orderDetect(frame);
+		//调度算法
+		vqa.detectStart(frame);
+	}
+	time_t result2 = time(NULL);
+	char endTime[26];
+	ctime_s(endTime, sizeof endTime, &result2);
+	printf("endTime:%s\n", endTime);
+	return 0;
+}
+//顺序检测多种异常
+int main2() {
+
+	const char filename[] = "E:/VQA/DatabaseBright/2.png";
+	const char filename2[] = "E:/VQA/DatabaseStripe/e6.jpg";
+	const char filename3[] = "E:/VQA/DatabaseColorCast/t3.jpg";
+	const char filename4[] = "E:/VQA/DatabaseSharpness/1.bmp";
+	const char filename5[] = "E:/VQA/DatabaseOcclusion/1.png";
+	const char filename6[] = "E:/VQA/DatabaseLOS/3.png";
+	const char filename7[] = "E:/VQA/DatabaseContrast/1.png";
+
+	//const char* src = "E:/VQA/DatabaseStripe/e6.jpg";  //条纹
+	//const char* base = "E:/VQA/DatabaseBright/1.png";   //偏暗
+	//const char* src = "E:/VQA/DatabaseColorCast/t3.jpg";  //偏色
+	//const char* base = "E:/VQA/DatabaseSharpness/1.bmp";  //清晰度异常
+	//const char* base = "E:/VQA/DatabaseOcclusion/1.png";  //遮挡
+	//const char* src = "E:/VQA/DatabaseLOS/3.png";  //信号丢失
+	//const char* base = "E:/VQA/DatabaseContrast/1.png"; // 对比度异常
+	Mat frame = imread(filename);
+	Mat frame2 = imread(filename2);
+	Mat frame3 = imread(filename3);
+	Mat frame4 = imread(filename4);
+	Mat frame5 = imread(filename5);
+	Mat frame6 = imread(filename6);
+	Mat frame7 = imread(filename7);
+	VQA vqa;
+	time_t result1 = time(NULL);
+	char startTime[26];
+	ctime_s(startTime, sizeof startTime, &result1);
+	printf("startTime:%s\n", startTime);
+	for (int i = 0; i < 100; i++) {
+		vqa.orderDetect(frame);
+		vqa.orderDetect(frame2);
+		vqa.orderDetect(frame3);
+		vqa.orderDetect(frame4);
+		vqa.orderDetect(frame5);
+		vqa.orderDetect(frame6);
+		vqa.orderDetect(frame7);
+	}
+	time_t result2 = time(NULL);
+	char endTime[26];
+	ctime_s(endTime, sizeof endTime, &result2);
+	printf("endTime:%s\n", endTime);
+	return 0;
+}
+//顺序检测多种异常
+int main3() {
+
+	const char filename[] = "E:/VQA/DatabaseBright/2.png";
+	const char filename2[] = "E:/VQA/DatabaseStripe/e6.jpg";
+	const char filename3[] = "E:/VQA/DatabaseColorCast/t3.jpg";
+	const char filename4[] = "E:/VQA/DatabaseSharpness/1.bmp";
+	const char filename5[] = "E:/VQA/DatabaseOcclusion/1.png";
+	const char filename6[] = "E:/VQA/DatabaseLOS/3.png";
+	const char filename7[] = "E:/VQA/DatabaseContrast/1.png";
+
+	//const char* src = "E:/VQA/DatabaseStripe/e6.jpg";  //条纹
+	//const char* base = "E:/VQA/DatabaseBright/1.png";   //偏暗
+	//const char* src = "E:/VQA/DatabaseColorCast/t3.jpg";  //偏色
+	//const char* base = "E:/VQA/DatabaseSharpness/1.bmp";  //清晰度异常
+	//const char* base = "E:/VQA/DatabaseOcclusion/1.png";  //遮挡
+	//const char* src = "E:/VQA/DatabaseLOS/3.png";  //信号丢失
+	//const char* base = "E:/VQA/DatabaseContrast/1.png"; // 对比度异常
+	Mat frame = imread(filename);
+	Mat frame2 = imread(filename2);
+	Mat frame3 = imread(filename3);
+	Mat frame4 = imread(filename4);
+	Mat frame5 = imread(filename5);
+	Mat frame6 = imread(filename6);
+	Mat frame7 = imread(filename7);
+	VQA vqa;
+	time_t result1 = time(NULL);
+	char startTime[26];
+	ctime_s(startTime, sizeof startTime, &result1);
+	printf("startTime:%s\n", startTime);
+	for (int i = 0; i < 1000000; i++) {
+		vqa.detectStart(frame);
+		vqa.detectStart(frame2);
+		vqa.detectStart(frame3);
+		vqa.detectStart(frame4);
+		vqa.detectStart(frame5);
+		vqa.detectStart(frame6);
+		vqa.detectStart(frame7);
+	}
+	time_t result2 = time(NULL);
+	char endTime[26];
+	ctime_s(endTime, sizeof endTime, &result2);
+	printf("endTime:%s\n", endTime);
+	return 0;
+}
+
+//TODO：动态检测多种异常

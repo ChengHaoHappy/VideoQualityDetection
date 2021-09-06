@@ -8,6 +8,9 @@
 using namespace std;
 using namespace cv;
 
+/**
+https://github.com/verusx/ColorCastDetection
+*/
 
 class ColorCastDetect : public Detection {
 public:

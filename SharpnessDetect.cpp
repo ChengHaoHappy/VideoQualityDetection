@@ -7,6 +7,12 @@ using namespace cv;
 
 class SharpnessDetect : public Detection {
 public:
+	/********************************************************************************
+	  *https://github.com/cooparation/ImageQualityAssessment/blob/master/README.md
+      *函数描述： DefRto 计算并返回一幅图像的清晰度
+	  *函数参数： frame  彩色帧图
+	  *函数返回值：double 清晰度表示值，针对该视频，当清晰度小于10为模糊，大于14为清楚
+    *********************************************************************************/
 	double DefRto(Mat frame)
 	{
 

@@ -119,7 +119,7 @@ public:
 		//cv::Mat baseimg = cv::imread(base);
 		if (!srcImage.data || !baseimg.data)
 		{
-			cout << "no picture!\n";
+			//cout << "no picture!\n";
 			return 8;
 		}
 		float k = 0;

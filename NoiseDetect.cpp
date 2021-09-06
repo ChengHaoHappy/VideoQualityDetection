@@ -308,7 +308,7 @@ public:
 			//Matout(eVal2);
 
 			sig2 = eVal2.at<double>(eVal2.rows - 1, 0);
-			//cout << "噪声指数= " << (int)sig2 << endl;
+			cout << "噪声指数= " << (int)sig2 << endl;
 			if (sig2 > 200) {
 				cout << "噪声异常" << " sig=" << sig2 << endl;
 				return 6;

@@ -78,8 +78,8 @@ public:
 		//printf("count = %d\n", count);
 		double stripe_rate = count / (height * width);
 		if (stripe_rate > 0.008) {
-			//cout << "条纹异常"  << endl;
-			cout << "条纹异常, 条纹率=" << stripe_rate << endl;
+			cout << "条纹异常"  << endl;
+			//cout << "条纹异常, 条纹率=" << stripe_rate << endl;
 			return 10;
 		}
 

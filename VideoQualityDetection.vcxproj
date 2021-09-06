@@ -142,25 +142,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Action.h" />
-    <ClInclude Include="BrightDetection.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="ColorCastDetection.h" />
-    <ClInclude Include="ContrastDetection.h" />
-    <ClInclude Include="FreezeDetection.h" />
-    <ClInclude Include="LOSDetection.h" />
-    <ClInclude Include="NoiseDetection.h" />
-    <ClInclude Include="OcclusionDetection.h" />
-    <ClInclude Include="ShakeDetection.h" />
-    <ClInclude Include="SharpnessDetection.h" />
-    <ClInclude Include="StripeDetection.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Bootstrap.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ColorCastDetect.cpp" />
     <ClCompile Include="ContrastDetect.cpp" />
-    <ClCompile Include="Detection.h" />
     <ClCompile Include="BrightDetect.cpp" />
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="FreezeDetect.cpp" />

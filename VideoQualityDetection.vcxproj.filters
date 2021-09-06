@@ -15,44 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BrightDetection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ColorCastDetection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="FreezeDetection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="OcclusionDetection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ShakeDetection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SharpnessDetection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="StripeDetection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="LOSDetection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ContrastDetection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="NoiseDetection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Action.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Bootstrap.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -64,9 +26,6 @@
     </ClCompile>
     <ClCompile Include="Action.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Detection.h">
-      <Filter>头文件</Filter>
     </ClCompile>
     <ClCompile Include="ContrastDetect.cpp">
       <Filter>源文件</Filter>

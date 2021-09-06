@@ -8,6 +8,13 @@ using namespace std;
 
 class BrightDetect: public Detection{
 public:
+	/*********************************************************************************************************************************************************
+	* https://github.com/cooparation/ImageQualityAssessment/blob/master/src/ImageQualityAssessment.cpp
+*函数描述： brightnessException     计算并返回一幅图像的色偏度以及，色偏方向
+*函数参数： InputImg    需要计算的图片，BGR存放格式，彩色（3通道），灰度图无效
+*           cast        计算出的偏差值，小于1表示比较正常，大于1表示存在亮度异常；当cast异常时，da大于0表示过亮，da小于0表示过暗
+*函数返回值：   返回值通过cast、da两个引用返回，无显式返回值
+**********************************************************************************************************************************************************/
 	void brightnessException(Mat InputImg, float& cast, float& da)
 	{
 		Mat GRAYimg;

@@ -10,6 +10,7 @@
 #include <ctime>
 #include "Camera.h"
 #include "VQA.cpp"
+#include "HttpClient.cpp"
 
 #pragma comment(lib,"wsock32.lib")
 #pragma comment(lib,"libmysql.lib")
@@ -37,27 +38,56 @@ bool videoCaptureFun(Camera camera) {
     }
     cv::Mat frame;
     VQA vqa;
+	//检测间隔
     int count = 0;
+	//连续异常次数
+	int failureCount = 0;
+	//告警次数
+	int alarmCount = 0;
 	time_t result1 = time(NULL);
 	char startTime[26];
 	//开始时间
 	ctime_s(startTime, sizeof startTime, &result1);
 	printf("startTime:%s\n", startTime);
+
+	HttpClient httpcleint;
+
     while (capture.read(frame)) {
         //imshow("camera-demo", frame);
         count++;
-		printf("ID:%d,第%d帧\n", camera.getId(), count);
+		//printf("ID:%d,第%d帧\n", camera.getId(), count);
+		//每隔count帧检测一次
         if (count == vqa.frame) {
-			printf("ID:%d,检测间隔:%d\n", camera.getId(), vqa.frame);
-			cout<<"摄像头编号:"<< camera.getName()<<endl;
-			cout << "摄像头位置:" << camera.getLocation() << endl;
-            vqa.detectStart(frame);
-			time_t result = time(NULL);
-			char str[26];
-			ctime_s(str, sizeof str, &result);
-			printf("时间:%s\n", str);
-            cout << "连续正常的帧数:" << vqa.sum1 << endl;
-            cout << "连续异常的帧数:" << vqa.sum << endl;
+			int flag = vqa.detectStart(frame);
+			//异常
+			if (flag != 0) {
+				//printf("ID:%d,检测间隔:%d\n", camera.getId(), vqa.frame);
+				//printf("摄像头ID:%d\n", camera.getId());
+				string type = to_string(flag);
+				string name = camera.getName();
+				string location = camera.getLocation();
+				cout<<"摄像头编号:"<< name <<endl;
+				cout << "摄像头位置:" << location << endl;
+				time_t result = time(NULL);
+				char str[26];
+				ctime_s(str, sizeof str, &result);
+				printf("异常发生时间:%s\n", str);
+				failureCount++;
+				if (failureCount == 3) {
+					failureCount = 0;
+					//告警
+					alarmCount++;
+					cout << "发起告警" << endl;
+					//httpcleint.getRequest("http://localhost/v1/reportAlarm", type, name, location, 8077);
+				}
+				//连续告警三次，既异常连续出现九次，不在检测，停止告警，等待维修
+				if (alarmCount == 3) {
+					cout << "gameover" << endl;
+					break;
+				}
+			}
+            //cout << "连续正常的帧数:" << vqa.sum1 << endl;
+            //cout << "连续异常的帧数:" << vqa.sum << endl;
             count = 0;
         }
 		//等30ms显示下一帧
@@ -84,7 +114,7 @@ void connectDatabaseFun() {
 	{
 		cout << "connect succeed!" << endl;
 		mysql_query(&myCont, "SET NAMES GBK"); //设置编码格式,否则在cmd下无法显示中文
-		res = mysql_query(&myCont, "select * from camera where is_delete = 0");//查询    //database下有相应的表才能成功
+		res = mysql_query(&myCont, "select * from camera where is_delete = 0 and area_id = 1");//查询    //database下有相应的表才能成功
 		if (!res)
 		{
 			result = mysql_store_result(&myCont);//保存查询到的数据到result

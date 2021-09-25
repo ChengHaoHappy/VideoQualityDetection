@@ -78,6 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>G:\OpenSSL-Win64\include;$(IncludePath)</IncludePath>
+    <LibraryPath>G:\OpenSSL-Win64\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -113,10 +115,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>G:\Program Files\MySQL\MySQL Server 5.7\include</AdditionalIncludeDirectories>
+      <UndefinePreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,13 +152,21 @@
     <ClCompile Include="BrightDetect.cpp" />
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="FreezeDetect.cpp" />
+    <ClCompile Include="HttpClient.cpp" />
     <ClCompile Include="LOSDetect.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="NoiseDetect.cpp" />
     <ClCompile Include="OcclusionDetect.cpp" />
     <ClCompile Include="ShakeDetect.cpp" />
     <ClCompile Include="SharpnessDetect.cpp" />
     <ClCompile Include="StripeDetect.cpp" />
+    <ClCompile Include="test.cpp" />
+    <ClCompile Include="url_code.cpp" />
     <ClCompile Include="VQA.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HttpClient.h" />
+    <ClInclude Include="url_code.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

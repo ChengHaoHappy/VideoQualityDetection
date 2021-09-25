@@ -308,9 +308,9 @@ public:
 			//Matout(eVal2);
 
 			sig2 = eVal2.at<double>(eVal2.rows - 1, 0);
-			cout << "ÔëÉùÖ¸Êý= " << (int)sig2 << endl;
+			//cout << "ÔëÉùÖ¸Êý= " << (int)sig2 << endl;
 			if (sig2 > 200) {
-				cout << "ÔëÉùÒì³£" << " sig=" << sig2 << endl;
+				cout << "ÔëÉùÒì³£" << endl;
 				return 6;
 			}
 

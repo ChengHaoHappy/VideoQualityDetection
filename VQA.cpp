@@ -2,7 +2,6 @@
 #include <list>
 #include "Action.h"
 #include <opencv2/opencv.hpp>  //OpenCV头文件
-
 using namespace std;
 
 class VQA {
@@ -33,7 +32,7 @@ public:
 	}
 
 
-	bool detectStart(cv::Mat src) {
+	int detectStart(cv::Mat src) {
 		list<Detection*>::iterator piter = queue.begin();
 		//异常检测队列
 		for (; piter != queue.end(); ++piter) {
@@ -64,7 +63,7 @@ public:
 						}
 					}
 				}
-				return false;
+				return x;
 			}
 		}
 		//无异常
@@ -80,7 +79,7 @@ public:
 			//连续正常数重置为0
 			sum1 = 0;
 		}
-		return true;
+		return 0;
 	}
 
 	void orderDetect(cv::Mat src) {
